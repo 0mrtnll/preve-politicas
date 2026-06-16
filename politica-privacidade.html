@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade — Prevencion Engenharia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; overflow-x: hidden; }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.9; } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes lineGrow { from { width: 0; } to { width: 80px; } }
+
+        /* ==================== NAVBAR ==================== */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideDown 0.8s ease-out;
+        }
+        nav.scrolled {
+            padding: 0.6rem 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem; font-weight: 800; color: #0a3d0a;
+            display: flex; align-items: center; gap: 0.5rem;
+            transition: transform 0.3s; text-decoration: none;
+        }
+        .logo:hover { transform: scale(1.02); }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #1a5c1a, #2d8a2d);
+            border-radius: 10px; display: flex; align-items: center;
+            justify-content: center; color: #fff; font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(26, 92, 26, 0.3);
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: #333; font-weight: 500;
+            font-size: 0.95rem; transition: all 0.3s;
+            position: relative; padding: 0.3rem 0;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #1a5c1a, #4a9e4a);
+            transition: width 0.3s; border-radius: 2px;
+        }
+        .nav-links a:hover { color: #1a5c1a; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(135deg, #1a5c1a, #2d8a2d) !important;
+            color: #fff !important; padding: 0.7rem 1.5rem !important;
+            border-radius: 50px !important; font-weight: 600 !important;
+            transition: all 0.3s !important;
+            box-shadow: 0 4px 15px rgba(26, 92, 26, 0.3);
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 92, 26, 0.4) !important;
+        }
+        .nav-cta::after { display: none !important; }
+        .mobile-menu-btn {
+            display: none; background: none; border: none;
+            cursor: pointer; padding: 0.5rem;
+        }
+        .mobile-menu-btn span {
+            display: block; width: 25px; height: 3px;
+            background: #1b5e20; margin: 5px 0;
+            border-radius: 3px; transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links { display: none; }
+        }
+
+        /* ==================== PAGE HERO ==================== */
+        .page-hero {
+            background: linear-gradient(135deg, #0a3d0a 0%, #1a5c1a 30%, #247024 60%, #2d8a2d 100%);
+            color: #fff;
+            padding: 10rem 2rem 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+        .page-hero-particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .page-hero-particle {
+            position: absolute;
+            width: 6px; height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+        }
+        .page-hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .page-hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
+            padding: 0.6rem 1.5rem; border-radius: 50px; font-size: 0.88rem;
+            font-weight: 600; margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+        .page-hero-badge .dot {
+            width: 8px; height: 8px; background: #3ddc84;
+            border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+        }
+        .page-hero h1 {
+            font-size: 2.8rem; font-weight: 900; line-height: 1.15;
+            margin-bottom: 1.2rem; animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            letter-spacing: -0.02em;
+        }
+        .page-hero h1 span {
+            background: linear-gradient(90deg, #6aaa6a, #8abf8a, #6aaa6a);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        .page-hero p {
+            font-size: 1.1rem; max-width: 600px; margin: 0 auto;
+            opacity: 0.9; line-height: 1.8; font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        .page-hero-wave {
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 100%; z-index: 3;
+        }
+        .page-hero-wave svg {
+            display: block;
+            width: 100%; height: auto;
+        }
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2rem; }
+            .page-hero { padding: 8rem 1.5rem 3.5rem; }
+        }
+
+        /* ==================== CONTENT ==================== */
+        .content-section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+        /* ==================== SUMÁRIO ==================== */
+        .toc {
+            background: linear-gradient(135deg, #f0f9f0, #e4f2e4);
+            border: 2px solid #c5e1c5; border-radius: 20px;
+            padding: 2.5rem; margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease;
+        }
+        .toc h2 {
+            font-size: 1.3rem; color: #0a3d0a; margin-bottom: 1.4rem;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-weight: 800;
+        }
+        .toc h2 svg { flex-shrink: 0; }
+        .toc-grid { display: flex; justify-content: center; gap: 3rem; }
+        .toc ol { padding-left: 2.4rem; list-style: none; }
+        .toc ol.toc-left { counter-reset: toc-counter; }
+        .toc ol.toc-right { counter-reset: toc-counter 6; }
+        .toc ol li { margin-bottom: 10px; position: relative; counter-increment: toc-counter; }
+        .toc ol li::before {
+            content: counter(toc-counter, decimal-leading-zero);
+            font-weight: 800; color: #1a5c1a; font-size: 0.82rem;
+            position: absolute; left: -2.4rem; top: 1px;
+        }
+        .toc ol li a {
+            color: #333; text-decoration: none; font-size: 0.92rem;
+            font-weight: 500; transition: all 0.3s; padding: 2px 0;
+            border-bottom: 1px solid transparent;
+        }
+        .toc ol li a:hover { color: #1a5c1a; border-bottom-color: #1a5c1a; }
+        @media (max-width: 600px) { .toc-grid { grid-template-columns: 1fr; } }
+
+        /* ==================== COOKIE MODAL ==================== */
+        .cookie-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .cookie-overlay.active { display: flex; }
+        .cookie-modal {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            animation: cookieSlideUp 0.4s ease;
+        }
+        @keyframes cookieSlideUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .cookie-modal-header {
+            padding: 28px 32px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .cookie-modal-header h2 {
+            font-size: 1.4rem;
+            color: #1a3a1a;
+            margin: 0 0 6px;
+        }
+        .cookie-modal-header p {
+            font-size: 0.88rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .cookie-modal-body { padding: 24px 32px; }
+        .cookie-section { margin-bottom: 22px; }
+        .cookie-section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a5c1a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cookie-section p,
+        .cookie-section ul {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .cookie-section ul {
+            padding-left: 18px;
+            margin-top: 4px;
+        }
+        .cookie-section ul li { margin-bottom: 3px; }
+        .cookie-prefs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .cookie-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            padding: 16px 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .cookie-card:hover { border-color: #2d8a2d; }
+        .cookie-card.disabled-card {
+            opacity: 0.7;
+            background: #f9f9f9;
+        }
+        .cookie-card-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            border-radius: 12px;
+            filter: grayscale(100%);
+        }
+        .cookie-card-info { flex: 1; }
+        .cookie-card h4 {
+            font-size: 0.92rem;
+            color: #1a3a1a;
+            margin: 0 0 2px;
+        }
+        .cookie-card p {
+            font-size: 0.78rem;
+            color: #888;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .cookie-card .cookie-toggle { flex-shrink: 0; }
+        .cookie-toggle {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+        .cookie-toggle input { opacity: 0; width: 0; height: 0; }
+        .cookie-toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #ccc;
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+        .cookie-toggle-slider::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .cookie-toggle input:checked + .cookie-toggle-slider { background: #2d8a2d; }
+        .cookie-toggle input:checked + .cookie-toggle-slider::before { transform: translateX(22px); }
+        .cookie-toggle input:disabled + .cookie-toggle-slider {
+            background: #2d8a2d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .cookie-toggle input:disabled + .cookie-toggle-slider::before { transform: translateX(22px); }
+        .cookie-modal-footer {
+            padding: 20px 32px 28px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-top: 1px solid #eee;
+        }
+        .cookie-btn {
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .cookie-btn-decline {
+            background: #fff;
+            border-color: #ccc;
+            color: #555;
+        }
+        .cookie-btn-decline:hover { border-color: #999; color: #333; }
+        .cookie-btn-save {
+            background: #fff;
+            border-color: #2d8a2d;
+            color: #2d8a2d;
+        }
+        .cookie-btn-save:hover { background: #2d8a2d; color: #fff; }
+        .cookie-btn-accept {
+            background: #2d8a2d;
+            border-color: #2d8a2d;
+            color: #fff;
+        }
+        .cookie-btn-accept:hover {
+            background: #1a5c1a;
+            border-color: #1a5c1a;
+        }
+
+        /* === ANIMAÇÕES EXTRAS === */
+        @keyframes borderGlow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(26,92,26,0.08); }
+            50% { box-shadow: 0 8px 35px rgba(26,92,26,0.15); }
+        }
+        @keyframes numBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.15) rotate(5deg); }
+        }
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes borderPulse {
+            0%, 100% { border-left-width: 4px; }
+            50% { border-left-width: 7px; }
+        }
+        @keyframes linkArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(4px); }
+        }
+
+        /* ==================== SUMÁRIO HOVER ==================== */
+        .toc {
+            background: linear-gradient(135deg, #f0f9f0, #e4f2e4);
+            background-size: 200% 200%;
+            transition: all 0.4s ease;
+        }
+        .toc:hover {
+            background-position: 100% 100%;
+            box-shadow: 0 6px 25px rgba(26,92,26,0.1);
+        }
+        .toc ol li a {
+            transition: all 0.25s ease;
+            border-radius: 4px;
+            padding: 3px 6px;
+            margin-left: -6px;
+        }
+        .toc ol li a:hover {
+            color: #1a5c1a;
+            background: rgba(26,92,26,0.08);
+            border-bottom-color: transparent;
+            padding-left: 10px;
+        }
+
+        /* ==================== SEÇÕES ==================== */
+        .policy-section {
+            margin-bottom: 2.5rem; padding: 2.5rem;
+            border: 1px solid #e8e8e8; border-radius: 20px;
+            background: #fff; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+        /* Linha decorativa verde no topo no hover */
+        .policy-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0;
+            width: 0; height: 4px;
+            background: linear-gradient(90deg, #1a5c1a, #4a9e4a);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .policy-section:hover::before { width: 100%; }
+        .policy-section:hover {
+            border-color: #c5e1c5;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 92, 26, 0.12);
+        }
+        .policy-section h2 {
+            font-size: 1.35rem; color: #0a3d0a; margin-bottom: 1.2rem;
+            display: flex; align-items: center; gap: 0.7rem;
+            padding-bottom: 0.8rem; border-bottom: 3px solid #1a5c1a;
+            font-weight: 800; transition: all 0.3s;
+        }
+        .policy-section:hover h2 {
+            border-bottom-color: #4a9e4a;
+        }
+        .policy-section h2 .section-num {
+            background: linear-gradient(135deg, #1a5c1a, #2d8a2d);
+            color: #fff; width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 800; flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .policy-section:hover h2 .section-num {
+            animation: numBounce 0.6s ease;
+            box-shadow: 0 6px 20px rgba(26,92,26,0.35);
+        }
+        .policy-section h2 .section-title { flex: 1; }
+        .policy-section h3 {
+            font-size: 1.05rem; color: #1a5c1a; margin: 1.4rem 0 0.6rem; font-weight: 700;
+            transition: color 0.3s;
+        }
+        .policy-section:hover h3 { color: #2d8a2d; }
+        .policy-section p {
+            font-size: 0.93rem; color: #555; line-height: 1.85; margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+        .policy-section:hover p { color: #444; }
+        .policy-section ul, .policy-section ol {
+            font-size: 0.93rem; color: #555; line-height: 1.85;
+            padding-left: 1.4rem; margin-bottom: 0.8rem;
+        }
+        .policy-section ul li, .policy-section ol li {
+            margin-bottom: 5px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .policy-section:hover ul li,
+        .policy-section:hover ol li {
+            color: #444;
+        }
+        .policy-section ul li:hover,
+        .policy-section ol li:hover {
+            transform: translateX(4px);
+            color: #1a5c1a;
+        }
+        .policy-section strong { color: #333; }
+        .mono-icon { color: #1a5c1a; }
+        .law-ref {
+            display: inline-block; background: #eef4ff; color: #3a5fc4;
+            padding: 1px 8px; border-radius: 4px; font-size: 0.82rem;
+            font-weight: 600; font-family: monospace;
+            transition: all 0.25s;
+        }
+        .law-ref:hover {
+            background: #3a5fc4; color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* ==================== HIGHLIGHT BOX ==================== */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f9f0, #e4f2e4);
+            border-left: 4px solid #1a5c1a;
+            padding: 1.2rem 1.5rem; border-radius: 0 12px 12px 0;
+            margin: 1rem 0; font-size: 0.9rem; color: #2e5a2e; line-height: 1.7;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .highlight-box:hover {
+            padding-left: 2rem;
+            box-shadow: 0 6px 25px rgba(26,92,26,0.12);
+            animation: borderPulse 1.2s ease-in-out infinite;
+        }
+
+        /* ==================== ALERT BOX ==================== */
+        .alert-box {
+            background: linear-gradient(135deg, #fff8f0, #fff3e8);
+            border-left: 4px solid #e8850c;
+            padding: 1.2rem 1.5rem; border-radius: 0 12px 12px 0;
+            margin: 1rem 0; font-size: 0.9rem; color: #5a3e1a; line-height: 1.7;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .alert-box:hover {
+            padding-left: 2rem;
+            box-shadow: 0 6px 25px rgba(232,133,12,0.15);
+            animation: borderPulse 1.2s ease-in-out infinite;
+        }
+
+        /* ==================== SCROLL TOP LINK ==================== */
+        .scroll-top-link {
+            display: inline-block; margin-top: 1.5rem;
+            font-size: 0.82rem; color: #1a5c1a; text-decoration: none;
+            font-weight: 600; transition: all 0.3s;
+            padding: 4px 10px; border-radius: 6px;
+        }
+        .scroll-top-link:hover {
+            color: #fff;
+            background: #1a5c1a;
+            animation: linkArrow 0.6s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            .policy-section { padding: 1.5rem; }
+            .policy-section h2 { font-size: 1.1rem; }
+            .toc { padding: 1.5rem; }
+            .content-section { padding: 2rem 1.2rem 3rem; }
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: #0d3b13; color: #a5d6a7; padding: 4rem 2rem 2rem;
+        }
+        .footer-container {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem; margin-bottom: 3rem;
+        }
+        .footer-brand .logo {
+            color: #fff; margin-bottom: 1rem; font-size: 1.3rem;
+        }
+        .footer-brand .logo-icon {
+            background: linear-gradient(135deg, #2d8a2d, #4a9e4a);
+        }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.7; opacity: 0.8; }
+        .footer-col h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul li a {
+            color: #a5d6a7; text-decoration: none; font-size: 0.9rem; transition: all 0.3s;
+        }
+        .footer-col ul li a:hover { color: #fff; padding-left: 5px; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem; text-align: center; font-size: 0.85rem; opacity: 0.7;
+        }
+        .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+        .footer-social a {
+            width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px; display: flex; align-items: center;
+            justify-content: center; color: #a5d6a7; text-decoration: none;
+            font-size: 1.1rem; transition: all 0.3s;
+        }
+        .footer-social a:hover { background: #1a5c1a; color: #fff; transform: translateY(-3px); }
+        @media (max-width: 1024px) { .footer-container { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) { .footer-container { grid-template-columns: 1fr; gap: 2rem; } }
+
+        /* ==================== WHATSAPP FLOAT ==================== */
+        .whatsapp-float {
+            position: fixed; bottom: 2rem; right: 2rem; background: #25d366;
+            color: #fff; width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s; z-index: 999;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+            animation: none;
+        }
+        .whatsapp-tooltip {
+            position: absolute; right: 75px; background: #fff; color: #333;
+            padding: 0.8rem 1.2rem; border-radius: 12px; font-size: 0.85rem;
+            font-weight: 600; white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0; transform: translateX(10px);
+            transition: all 0.3s; pointer-events: none;
+        }
+        .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; transform: translateX(0); }
+
+        /* ==================== SCROLL ANIMATIONS ==================== */
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body id="top">
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="prevencion-engenharia.html#top" class="logo">
+                <div class="logo-icon" style="background:none;box-shadow:none;padding:0;">
+                    <img src="https://i.postimg.cc/q7vNVDLm/prevencion-logo-header.png" alt="Prevencion Engenharia" style="width:200px;height:52px;object-fit:contain;border-radius:10px;">
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="prevencion-engenharia.html#sobre">Sobre</a></li>
+                <li><a href="prevencion-engenharia.html#servicos">Serviços</a></li>
+                <li><a href="prevencion-engenharia.html#diferenciais">Diferenciais</a></li>
+                <li><a href="prevencion-engenharia.html#processo">Processo</a></li>
+                <li><a href="prevencion-engenharia.html#contato" class="nav-cta">Fale Conosco</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-particles" id="pageHeroParticles"></div>
+        <div class="page-hero-content">
+            <div class="page-hero-badge">
+                <span class="dot"></span>
+                Lei nº 13.709/2018 — LGPD
+            </div>
+            <h1>Política de <span>Privacidade</span></h1>
+            <p>Conheça como a Prevencion Engenharia trata seus dados pessoais, seus direitos e nossas práticas de proteção, em conformidade com a Lei Geral de Proteção de Dados.</p>
+        </div>
+        <div class="page-hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L48 108C96 96 192 72 288 66C384 60 480 72 576 78C672 84 768 84 864 78C960 72 1056 60 1152 60C1248 60 1344 72 1392 78L1440 84V120H0Z" fill="#fff"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="content-section">
+
+        <!-- SUMÁRIO -->
+        <div class="toc animate-on-scroll">
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                Sumário
+            </h2>
+            <div class="toc-grid">
+                <ol class="toc-left">
+                    <li><a href="#secao-1">Controlador dos Dados</a></li>
+                    <li><a href="#secao-2">Dados Coletados</a></li>
+                    <li><a href="#secao-3">Finalidades</a></li>
+                    <li><a href="#secao-4">Base Legal</a></li>
+                    <li><a href="#secao-5">Compartilhamento</a></li>
+                    <li><a href="#secao-6">Cookies</a></li>
+                </ol>
+                <ol class="toc-right">
+                    <li><a href="#secao-7">Retenção e Segurança</a></li>
+                    <li><a href="#secao-8">Seus Direitos</a></li>
+                    <li><a href="#secao-9">Transferência Internacional</a></li>
+                    <li><a href="#secao-10">Crianças e Adolescentes</a></li>
+                    <li><a href="#secao-11">Atualizações</a></li>
+                    <li><a href="#secao-12">Contato e DPO</a></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 1 -->
+        <div class="policy-section animate-on-scroll" id="secao-1">
+            <h2><span class="section-num">1</span><span class="section-title">Controlador dos Dados</span></h2>
+            <p>A <strong>Prevencion Engenharia</strong>, pessoa jurídica de direito privado, inscrita no CNPJ sob nº <strong>37.338.082/0001-44</strong>, com sede em Bauru/SP, é a <strong>controladora</strong> dos dados pessoais tratados por este site, conforme definição do Art. 5º, VI, da <span class="law-ref">Lei nº 13.709/2018 (LGPD)</span>.</p>
+            <p>O controlador é a pessoa natural ou jurídica, de direito público ou privado, a quem competem as decisões referentes ao tratamento de dados pessoais. Neste sentido, a Prevencion Engenharia é responsável por definir quais dados coletar, para quais finalidades, por quanto tempo armazená-los e quais medidas de segurança adotar.</p>
+            <p>O <strong>Encarregado de Dados (DPO — <em>Data Protection Officer</em>)</strong> é o representante indicado pelo controlador para atuar como canal de comunicação entre a empresa, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD), conforme Art. 5º, VIII, da LGPD. Os dados de contato do DPO estão disponíveis na Seção 12 deste documento.</p>
+            <p>Todas as decisões relativas ao tratamento de dados pessoais realizadas por este site são tomadas internamente, no Brasil, em observância à legislação brasileira vigente.</p>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 2 -->
+        <div class="policy-section animate-on-scroll" id="secao-2">
+            <h2><span class="section-num">2</span><span class="section-title">Dados Coletados</span></h2>
+            <p>A Prevencion Engenharia coleta os seguintes dados pessoais por meio deste site:</p>
+            <h3>Dados fornecidos diretamente pelo titular</h3>
+            <ul>
+                <li><strong>Nome completo</strong> — para identificação e comunicação.</li>
+                <li><strong>Endereço de e-mail</strong> — para retorno de contato e envio de informações.</li>
+                <li><strong>Número de telefone/<em>WhatsApp</em></strong> — para contato direto e envio de orçamentos.</li>
+                <li><strong>Conteúdo da mensagem</strong> — informações enviadas voluntariamente pelo formulário de contato.</li>
+                <li><strong>Nome da empresa</strong> — quando fornecido na solicitação de orçamento.</li>
+            </ul>
+            <h3>Dados coletados automaticamente (navegação)</h3>
+            <ul>
+                <li><strong>Endereço IP</strong> — para segurança e análise de tráfego.</li>
+                <li><strong>Tipo e versão do navegador</strong> — para otimização da experiência.</li>
+                <li><strong>Sistema operacional</strong> — para compatibilidade técnica.</li>
+                <li><strong>Páginas visitadas, data e hora de acesso</strong> — para análise estatística.</li>
+                <li><strong>Caminho de navegação (<em>clickstream</em>)</strong> — para melhorar a usabilidade.</li>
+                <li><strong>Origem da visita (<em>referrer</em>)</strong> — para entender como o usuário chegou ao site.</li>
+                <li><strong>Dados de cookies</strong> — conforme detalhado na Seção 6.</li>
+            </ul>
+            <h3>Dados sensíveis</h3>
+            <p>A Prevencion Engenharia <strong>não coleta dados sensíveis</strong> (origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico) por meio deste site.</p>
+            <div class="highlight-box"><span class="mono-icon">💡</span> <strong>Observação:</strong> Todos os dados são fornecidos de forma voluntária pelo titular. O não fornecimento de dados de contato impedirá a resposta à solicitação específica, mas não a navegação geral pelo site.</div>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 3 -->
+        <div class="policy-section animate-on-scroll" id="secao-3">
+            <h2><span class="section-num">3</span><span class="section-title">Finalidades do Tratamento</span></h2>
+            <p>Os dados pessoais coletados são tratados para as seguintes finalidades específicas:</p>
+            <ol>
+                <li><strong>Atendimento de solicitações:</strong> responder mensagens enviadas pelo formulário de contato, retornar ligações e prestar esclarecimentos sobre nossos serviços de engenharia de segurança contra incêndio.</li>
+                <li><strong>Elaboração de orçamentos:</strong> processar solicitações de orçamento para projetos de incêndio, AVCB, projetos elétricos, planos de emergência e demais serviços oferecidos.</li>
+                <li><strong>Execução contratual:</strong> cumprir obrigações decorrentes de contratos firmados com clientes.</li>
+                <li><strong>Melhorar o site e a experiência do usuário:</strong> analisar padrões de navegação para otimizar layout, conteúdo e funcionalidades.</li>
+                <li><strong>Segurança da informação:</strong> proteger o site contra fraudes, acessos não autorizados e outras ameaças cibernéticas.</li>
+                <li><strong>Cumprimento de obrigações legais:</strong> atender exigências fiscais, regulatórias e judiciais aplicáveis.</li>
+                <li><strong>Comunicações de marketing</strong> (mediante consentimento): enviar informativos, novidades sobre serviços, conteúdos educativos sobre segurança contra incêndio e promoções.</li>
+                <li><strong>Exercício regular de direitos:</strong> utilizar dados quando necessário para pleitear ou defender direitos em processos judiciais, administrativos ou arbitrais.</li>
+            </ol>
+            <div class="highlight-box"><span class="mono-icon">⚖️</span> <strong>Princípio da finalidade:</strong> Em conformidade com o Art. 6º, I, da LGPD, os dados são tratados exclusivamente para finalidades legítimas, específicas e informadas ao titular, sem possibilidade de tratamento posterior de forma incompatível com essas finalidades.</div>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 4 -->
+        <div class="policy-section animate-on-scroll" id="secao-4">
+            <h2><span class="section-num">4</span><span class="section-title">Base Legal</span></h2>
+            <p>O tratamento de dados pessoais realizado pela Prevencion Engenharia fundamenta-se nas hipóteses previstas no <span class="law-ref">Art. 7º da LGPD</span>, conforme aplicável a cada situação:</p>
+            <ul>
+                <li><span class="law-ref">Art. 7º, I</span> — <strong>Consentimento:</strong> para o envio de comunicações de marketing e para cookies não essenciais. O consentimento pode ser revogado a qualquer momento.</li>
+                <li><span class="law-ref">Art. 7º, II</span> — <strong>Cumprimento de obrigação legal ou regulatória:</strong> para atender exigências fiscais, tributárias e regulatórias aplicáveis à atividade da empresa.</li>
+                <li><span class="law-ref">Art. 7º, IV</span> — <strong>Execução de políticas públicas:</strong> quando aplicável, no âmbito de convênios ou parcerias com órgãos públicos.</li>
+                <li><span class="law-ref">Art. 7º, V</span> — <strong>Execução de contrato:</strong> para a celebração e execução de contratos de prestação de serviços de engenharia, incluindo a elaboração e entrega de projetos técnicos.</li>
+                <li><span class="law-ref">Art. 7º, IX</span> — <strong>Interesse legítimo do controlador:</strong> para segurança da informação, prevenção de fraudes, melhoria contínua do site e análise estatística, sempre respeitando os direitos e liberdades fundamentais do titular.</li>
+            </ul>
+            <p>Cada operação de tratamento está vinculada a uma base legal específica, garantindo conformidade com os princípios da necessidade, finalidade e adequação, conforme <span class="law-ref">Art. 6º da LGPD</span>.</p>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 5 -->
+        <div class="policy-section animate-on-scroll" id="secao-5">
+            <h2><span class="section-num">5</span><span class="section-title">Compartilhamento de Dados</span></h2>
+            <p>A Prevencion Engenharia adota como política <strong>não vender, comercializar nem compartilhar dados pessoais com terceiros para fins comerciais</strong>. O compartilhamento poderá ocorrer apenas nas seguintes hipóteses:</p>
+            <h3>Prestadores de serviço (operadores)</h3>
+            <ul>
+                <li>Empresas de <strong>hospedagem web</strong> (ex: provedores de <em>cloud</em>) que armazenam os dados do site em servidores seguros.</li>
+                <li>Ferramentas de <strong>análise de tráfego</strong> (ex: Google Analytics) que processam dados de navegação de forma anonimizada.</li>
+                <li>Provedores de <strong><em>software</em> de <em>e-mail</em> marketing</strong>, contratados apenas para envio de comunicações com consentimento prévio.</li>
+                <li>Prestadores de <strong>serviços contábeis e jurídicos</strong> necessários à operação da empresa.</li>
+            </ul>
+            <div class="highlight-box">🔒 Todos os prestadores de serviço contratados atuam na qualidade de <strong>operadores</strong> (Art. 5º, VII, da LGPD), estando vinculados a contratos que exigem o cumprimento integral da LGPD e a adoção de medidas de segurança adequadas.</div>
+            <h3>Obrigação legal ou determinação judicial</h3>
+            <ul>
+                <li>Dados poderão ser compartilhados com <strong>autoridades públicas</strong> (Receita Federal, Corpo de Bombeiros, Poder Judiciário, Ministério Público, ANPD ou órgãos equivalentes) quando houver obrigação legal, requisição administrativa ou determinação judicial.</li>
+            </ul>
+            <h3>Transferência com consentimento</h3>
+            <ul>
+                <li>Em situações não previstas acima, qualquer compartilhamento será realizado apenas mediante <strong>consentimento expresso e específico</strong> do titular (Art. 7º, I).</li>
+            </ul>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 6 -->
+        <div class="policy-section animate-on-scroll" id="secao-6">
+            <h2><span class="section-num">6</span><span class="section-title">Cookies</span></h2>
+            <p>Este site utiliza cookies e tecnologias semelhantes para melhorar a experiência de navegação e coletar informações estatísticas. Cookies são pequenos arquivos de texto armazenados no dispositivo do usuário quando ele visita o site.</p>
+            <h3>Categorias de cookies utilizados</h3>
+            <ul>
+                <li><strong>Cookies essenciais:</strong> necessários para o funcionamento básico do site, incluindo navegação entre páginas e acesso a áreas seguras. Estes cookies <strong>não podem ser desativados</strong>, pois são indispensáveis para a operação do site.</li>
+                <li><strong>Cookies de análise (<em>analytics</em>):</strong> utilizados para coletar informações sobre como os visitantes usam o site (páginas mais visitadas, tempo de permanência, taxa de rejeição). Os dados são processados de forma <strong>totalmente anônima</strong> e agregada. Ativados por padrão, podem ser desativados pelo usuário.</li>
+                <li><strong>Cookies de marketing:</strong> utilizados para exibir conteúdo relevante e realizar campanhas promocionais. Permitem medir a eficácia das comunicações. Ativados por padrão, podem ser desativados pelo usuário.</li>
+            </ul>
+            <h3>Controle de cookies</h3>
+            <p>O usuário pode gerenciar suas preferências de cookies a qualquer momento por meio do botão <strong>"Gerenciar Cookies"</strong> disponível no rodapé deste site. As preferências são salvas no navegador e respeitadas em visitas futuras.</p>
+            <p>Alternativamente, o usuário pode desativar cookies diretamente nas configurações do navegador. Ressaltamos que a desativação de cookies essenciais pode comprometer o funcionamento de algumas funcionalidades do site.</p>
+            <div class="highlight-box"><span class="mono-icon">🍪</span> Conforme a <strong>Diretiva ePrivacy</strong> e as orientações da ANPD, a Prevencion Engenharia solicita seu consentimento para cookies não essenciais e oferece transparência completa sobre cada categoria utilizada.</div>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 7 -->
+        <div class="policy-section animate-on-scroll" id="secao-7">
+            <h2><span class="section-num">7</span><span class="section-title">Retenção e Segurança</span></h2>
+            <h3>Prazo de retenção</h3>
+            <p>Os dados pessoais são armazenados pelo tempo estritamente necessário para cumprir as finalidades para as quais foram coletados, respeitando os seguintes critérios:</p>
+            <ul>
+                <li><strong>Dados de formulário de contato:</strong> armazenados por até <strong>12 meses</strong> após a última interação, período suficiente para o atendimento completo da solicitação.</li>
+                <li><strong>Dados contratuais:</strong> mantidos durante toda a vigência do contrato e por até <strong>5 anos</strong> após seu término, em observância aos prazos prescricionais do Código Civil (Art. 205 e 206) e da legislação tributária.</li>
+                <li><strong>Dados de navegação:</strong> informações de cookies e análise são retidas por até <strong>13 meses</strong> (conforme padrão do Google Analytics), sendo automaticamente excluídas após esse período.</li>
+                <li><strong>Dados para marketing:</strong> mantidos até a <strong>revogação do consentimento</strong> pelo titular.</li>
+            </ul>
+            <p>Transcorridos os prazos acima, os dados serão <strong>eliminados ou anonimizados</strong>, conforme o Art. 16 da LGPD.</p>
+            <h3>Medidas de segurança</h3>
+            <p>A Prevencion Engenharia adota as seguintes medidas técnicas e administrativas para proteger os dados pessoais (<span class="law-ref">Art. 46 da LGPD</span>):</p>
+            <ul>
+                <li><strong>Criptografia SSL/TLS:</strong> toda a comunicação entre o navegador do usuário e o site é protegida por certificado SSL (HTTPS), impedindo interceptação de dados.</li>
+                <li><strong>Controle de acesso:</strong> o acesso aos dados pessoais é restrito a colaboradores autorizados, mediante credenciais individuais e autenticação segura.</li>
+                <li><strong>Hospedagem segura:</strong> o site está hospedado em servidores com certificações de segurança, <em>firewalls</em> e monitoramento contínuo contra intrusões.</li>
+                <li><strong>Política interna de segurança:</strong> mantemos políticas internas de tratamento de dados e realizamos treinamentos periódicos com a equipe.</li>
+                <li><strong>Backup e recuperação:</strong> mantemos procedimentos de backup para garantir a disponibilidade dos dados em caso de incidentes técnicos.</li>
+            </ul>
+            <div class="alert-box"><span class="mono-icon">⚠️</span> <strong>Aviso sobre incidentes:</strong> Em conformidade com o Art. 48 da LGPD, em caso de incidente de segurança que possa acarretar risco ou dano relevante aos titulares, a Prevencion Engenharia comunicará a ANPD e os titulares afetados no prazo razoável estabelecido pela autoridade.</div>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 8 -->
+        <div class="policy-section animate-on-scroll" id="secao-8">
+            <h2><span class="section-num">8</span><span class="section-title">Seus Direitos (LGPD — Art. 18)</span></h2>
+            <p>Em conformidade com o <span class="law-ref">Art. 18 da Lei nº 13.709/2018</span>, o titular de dados pessoais tem o direito de obter do controlador, a qualquer momento e mediante requisição:</p>
+            <ol>
+                <li><strong>Confirmação da existência de tratamento:</strong> saber se seus dados pessoais são tratados pela Prevencion Engenharia.</li>
+                <li><strong>Acesso aos dados:</strong> solicitar uma cópia de todos os dados pessoais que mantemos sobre você.</li>
+                <li><strong>Correção:</strong> solicitar a correção de dados incompletos, inexatos ou desatualizados.</li>
+                <li><strong>Anonimização, bloqueio ou eliminação:</strong> solicitar a anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade com a LGPD.</li>
+                <li><strong>Portabilidade:</strong> solicitar a portabilidade dos dados a outro fornecedor de serviço ou produto, mediante requisição expressa, em formato estruturado e de uso comum.</li>
+                <li><strong>Eliminação de dados tratados com consentimento:</strong> solicitar a eliminação dos dados tratados com base no consentimento, exceto nas hipóteses de guarda previstas no Art. 16 da LGPD.</li>
+                <li><strong>Informação sobre compartilhamento:</strong> solicitar informações sobre as entidades públicas e privadas com as quais o controlador realizou uso compartilhado de dados.</li>
+                <li><strong>Informação sobre a possibilidade de não fornecer consentimento:</strong> ser informado sobre a possibilidade de não fornecer consentimento e sobre as consequências de tal negativa.</li>
+                <li><strong>Revogação do consentimento:</strong> revogar o consentimento a qualquer momento, por meio de declaração expressa, sem afetar a licitude do tratamento realizado anteriormente.</li>
+            </ol>
+            <h3>Como exercer seus direitos</h3>
+            <p>Para exercer qualquer dos direitos acima, entre em contato conosco pelos canais indicados na Seção 12 (<em>Contato e DPO</em>). A Prevencion Engenharia atenderá sua solicitação no prazo máximo de <strong>15 (quinze) dias</strong> a partir do recebimento da requisição, conforme Art. 18, §3º, da LGPD.</p>
+            <h3>Direito de petição à ANPD</h3>
+            <p>Caso considere que seus direitos não foram adequadamente atendidos, o titular pode apresentar <strong>petição à Autoridade Nacional de Proteção de Dados (ANPD)</strong>, órgão da administração pública federal responsável por zelar pela proteção de dados pessoais e por fiscalizar o cumprimento da LGPD.</p>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 9 -->
+        <div class="policy-section animate-on-scroll" id="secao-9">
+            <h2><span class="section-num">9</span><span class="section-title">Transferência Internacional de Dados</span></h2>
+            <p>A Prevencion Engenharia realiza suas operações com dados pessoais predominantemente no <strong>território brasileiro</strong>. No entanto, a transferência internacional de dados pode ocorrer nas seguintes situações:</p>
+            <ul>
+                <li><strong>Ferramentas de análise:</strong> serviços como o Google Analytics podem processar dados em servidores localizados fora do Brasil. Nesses casos, a transferência é amparada pelo <span class="law-ref">Art. 33, II, da LGPD</span> (cláusulas contratuais padrão) e pelos termos de serviço dos provedores, que adotam padrões internacionais de proteção de dados.</li>
+                <li><strong>Hospedagem em nuvem:</strong> caso o provedor de hospedagem mantenha data centers fora do Brasil, a transferência é regida pelo <span class="law-ref">Art. 33, I, da LGPD</span>, mediante a adoção de garantias contratuais adequadas.</li>
+            </ul>
+            <div class="highlight-box"><span class="mono-icon">🌐</span> <strong>Garantias:</strong> Em todas as transferências internacionais, a Prevencion Engenharia assegura que o país de destino ou a organização internacional ofereça <strong>nível de proteção adequado aos dados pessoais</strong>, conforme avaliação da ANPD, ou que sejam adotadas salvaguardas contratuais equivalentes (Art. 33 da LGPD).</div>
+            <p>Se você desejar obter informações específicas sobre os mecanismos de proteção aplicados a transferências internacionais de seus dados, entre em contato com nosso DPO pelos canais da Seção 12.</p>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 10 -->
+        <div class="policy-section animate-on-scroll" id="secao-10">
+            <h2><span class="section-num">10</span><span class="section-title">Crianças e Adolescentes</span></h2>
+            <p>Este site <strong>não coleta intencionalmente dados pessoais de crianças (até 12 anos) ou adolescentes (13 a 18 anos)</strong>. Em conformidade com o <span class="law-ref">Art. 14 da LGPD</span> e o <span class="law-ref">Art. 8º do Estatuto da Criança e do Adolescente (Lei 8.069/1990)</span>, o tratamento de dados de menores de idade é realizado apenas:</p>
+            <ul>
+                <li>Com o <strong>consentimento específico</strong> de pelo menos um dos pais ou responsável legal, no caso de crianças.</li>
+                <li>Observando o <strong>melhor interesse</strong> da criança ou do adolescente, com a menor coleta possível de dados (princípio da necessidade — Art. 6º, III).</li>
+            </ul>
+            <h3>Dados de contatos comerciais profissionais</h3>
+            <p>Caso um adolescente entre em contato com a empresa para solicitar informações sobre serviços (como orçamento para um estabelecimento comercial), os dados coletados serão tratados estritamente para a finalidade de resposta à solicitação, sendo eliminados após o atendimento completo.</p>
+            <div class="alert-box"><span class="mono-icon">👤</span> Se você é pai, mãe ou responsável legal e tem conhecimento de que seu filho forneceu dados pessoais à Prevencion Engenharia sem sua autorização, entre em contato imediatamente pelos canais da Seção 12 para que possamos remover as informações.</div>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 11 -->
+        <div class="policy-section animate-on-scroll" id="secao-11">
+            <h2><span class="section-num">11</span><span class="section-title">Atualizações desta Política</span></h2>
+            <p>A Prevencion Engenharia reserva-se o direito de atualizar esta Política de Privacidade periodicamente para refletir mudanças em:</p>
+            <ul>
+                <li><strong>Legislação aplicável:</strong> alterações na LGPD, regulamentações da ANPD ou demais leis federais, estaduais ou municipais afetas à proteção de dados.</li>
+                <li><strong>Práticas internas:</strong> novos serviços, ferramentas ou processos que envolvam tratamento de dados pessoais.</li>
+                <li><strong>Recomendações da ANPD:</strong> orientações, guias e resoluções emitidos pela Autoridade Nacional de Proteção de Dados.</li>
+            </ul>
+            <p>As alterações serão publicadas nesta mesma página, com indicação da <strong>data da última revisão</strong> no início do documento. Recomendamos que o usuário revise esta política periodicamente.</p>
+            <p>Alterações que impliquem em mudança significativa nas finalidades de tratamento ou nas bases legais serão comunicadas aos titulares por meio de aviso em destaque no site ou por e-mail, quando aplicável, garantindo transparência e a possibilidade de revisão do consentimento.</p>
+            <div class="highlight-box"><span class="mono-icon">📅</span> <strong>Última atualização:</strong> 15 de junho de 2026</div>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+        <!-- SEÇÃO 12 -->
+        <div class="policy-section animate-on-scroll" id="secao-12">
+            <h2><span class="section-num">12</span><span class="section-title">Contato e Encarregado de Dados (DPO)</span></h2>
+            <p>Para exercer seus direitos previstos na LGPD, esclarecer dúvidas sobre esta Política de Privacidade, solicitar informações sobre o tratamento de seus dados ou comunicar incidentes de segurança, entre em contato com o <strong>Encarregado de Dados (DPO)</strong> da Prevencion Engenharia:</p>
+            <div class="highlight-box" style="padding: 1.5rem 2rem;">
+                <ul style="list-style:none; padding:0; margin:0; font-size:0.95rem; color:#2e5a2e; line-height:2.2;">
+                    <li><span class="mono-icon">📧</span> <strong>E-mail do DPO:</strong> <a href="mailto:denis@prevencion.eng.br" style="color:#1a5c1a; text-decoration:none; font-weight:600;">denis@prevencion.eng.br</a></li>
+                    <li><span class="mono-icon">📞</span> <strong>Telefone / WhatsApp:</strong> <a href="https://wa.me/5514997665882" style="color:#1a5c1a; text-decoration:none; font-weight:600;">(14) 99766-5882</a></li>
+                    <li><span class="mono-icon">📍</span> <strong>Endereço:</strong> Bauru — SP, Brasil</li>
+                </ul>
+            </div>
+            <p>O DPO está disponível em dias úteis, em horário comercial. As solicitações serão respondidas no prazo máximo de <strong>15 (quinze) dias</strong>, conforme Art. 18, §3º, da LGPD.</p>
+            <p>Caso não obtenha resposta satisfatória, o titular poderá registrar reclamação junto à <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> pelo site: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener" style="color:#1a5c1a; font-weight:600;">www.gov.br/anpd</a>.</p>
+            <a href="#top" class="scroll-top-link"><span>↑ Voltar ao topo</span></a>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a class="logo">
+                    <div class="logo-icon" style="background:none;box-shadow:none;padding:0;">
+                        <img src="https://i.postimg.cc/q7vNVDLm/prevencion-logo-header.png" alt="Prevencion Engenharia" style="width:40px;height:40px;object-fit:contain;border-radius:10px;">
+                    </div>
+                    Prevencion Engenharia
+                </a>
+                <p>Segurança contra incêndio com excelência técnica e comprometimento com a vida. Conosco é sempre seguro, nós mantemos a disposição!</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/prevencion_engenharia/" title="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Serviços</h4>
+                <ul>
+                    <li><a href="prevencion-engenharia.html#servicos">Projeto de Incêndio</a></li>
+                    <li><a href="prevencion-engenharia.html#servicos">AVCB</a></li>
+                    <li><a href="prevencion-engenharia.html#servicos">Projeto Elétrico</a></li>
+                    <li><a href="prevencion-engenharia.html#servicos">Plano de Emergência</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="prevencion-engenharia.html#sobre">Sobre Nós</a></li>
+                    <li><a href="prevencion-engenharia.html#diferenciais">Diferenciais</a></li>
+                    <li><a href="prevencion-engenharia.html#processo">Processo</a></li>
+                    <li><a href="prevencion-engenharia.html#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="#">(14) 99766-5882</a></li>
+                    <li><a href="#">denis@prevencion.eng.br</a></li>
+                    <li><a href="#">Bauru - SP</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;">
+                <p style="margin:0;">&copy; 2026 Prevencion Engenharia. Todos os direitos reservados.</p>
+                <div style="display:flex;gap:10px;align-items:center;">
+                    <a href="politica-privacidade.html" class="footer-bottom-link" style="display:inline-block;padding:6px 16px;border:1.5px solid #2d8a2d;color:#2d8a2d;text-decoration:none;border-radius:8px;font-size:0.85rem;font-weight:600;transition:all 0.3s;">Política de Privacidade</a>
+                    <a href="prevencion-engenharia.html" class="footer-bottom-link" style="display:inline-block;padding:6px 16px;border:1.5px solid #2d8a2d;color:#2d8a2d;text-decoration:none;border-radius:8px;font-size:0.85rem;font-weight:600;transition:all 0.3s;">Gerenciar Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5514997665882?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20projeto%20de%20segurança%20contra%20incêndio." class="whatsapp-float" title="Fale conosco no WhatsApp">
+        <span class="whatsapp-tooltip">Fale conosco!</span>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script>
+        // ==================== NAVBAR SCROLL ====================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== SCROLL ANIMATIONS ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ==================== MOBILE MENU ====================
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // ==================== PAGE HERO PARTICLES ====================
+        function createPageHeroParticles() {
+            const container = document.getElementById('pageHeroParticles');
+            if (!container) return;
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'page-hero-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 6 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(particle);
+            }
+        }
+        createPageHeroParticles();
+
+        // ==================== COOKIE MODAL LOGIC ====================
+        (function() {
+            var overlay = document.getElementById('cookieOverlay');
+            var analytics = document.getElementById('cookieAnalytics');
+            var marketing = document.getElementById('cookieMarketing');
+
+            document.querySelector('[data-link="cookies"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.add('active');
+            });
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+
+            document.getElementById('cookieDecline').addEventListener('click', function() {
+                analytics.checked = false;
+                marketing.checked = false;
+                overlay.classList.remove('active');
+                localStorage.setItem('cookiePrefs', JSON.stringify({ analytics: false, marketing: false }));
+            });
+
+            document.getElementById('cookieSave').addEventListener('click', function() {
+                overlay.classList.remove('active');
+                localStorage.setItem('cookiePrefs', JSON.stringify({ analytics: analytics.checked, marketing: marketing.checked }));
+            });
+
+            document.getElementById('cookieAccept').addEventListener('click', function() {
+                analytics.checked = true;
+                marketing.checked = true;
+                overlay.classList.remove('active');
+                localStorage.setItem('cookiePrefs', JSON.stringify({ analytics: true, marketing: true }));
+            });
+        })();
+    </script>
+
+    <!-- COOKIE MODAL -->
+    <div class="cookie-overlay" id="cookieOverlay">
+        <div class="cookie-modal">
+            <div class="cookie-modal-header">
+                <h2>Política de Cookies &amp; LGPD</h2>
+                <p>Lei nº 13.709/2018 — Lei Geral de Proteção de Dados Pessoais. Gerencie suas preferências abaixo.</p>
+            </div>
+            <div class="cookie-modal-body">
+
+                <!-- Dados coletados -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Dados que Coletamos
+                    </div>
+                    <ul>
+                        <li><strong>Dados de navegação:</strong> endereço IP, tipo de navegador, páginas visitadas, tempo de permanência e origem da visita.</li>
+                        <li><strong>Dados fornecidos pelo usuário:</strong> nome, e-mail, telefone e mensagem enviados pelo formulário de contato.</li>
+                        <li><strong>Cookies:</strong> informações armazenadas no seu dispositivo para melhorar a experiência de navegação.</li>
+                    </ul>
+                </div>
+
+                <!-- Finalidade -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        Para que Usamos
+                    </div>
+                    <ul>
+                        <li>Garantir o funcionamento adequado do site e seus recursos.</li>
+                        <li>Responder às solicitações enviadas pelo formulário de contato.</li>
+                        <li>Analisar o tráfego e comportamento de navegação para melhorar nossos serviços.</li>
+                        <li>Enviar comunicações de marketing, mediante consentimento.</li>
+                        <li>Cumprir obrigações legais e regulatórias aplicáveis.</li>
+                    </ul>
+                </div>
+
+                <!-- Base legal -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Base Legal
+                    </div>
+                    <p>O tratamento de dados pessoais realizado por este site fundamenta-se nas bases legais previstas no <strong>Art. 7º da LGPD</strong>, conforme aplicável:</p>
+                    <ul>
+                        <li><strong>Art. 7º, I — Consentimento:</strong> para cookies não essenciais e comunicações de marketing.</li>
+                        <li><strong>Art. 7º, II — Cumprimento de obrigação legal:</strong> para atendimento de exigências regulatórias.</li>
+                        <li><strong>Art. 7º, V — Execução de contrato:</strong> para responder solicitações e prestar serviços.</li>
+                        <li><strong>Art. 7º, IX — Interesse legítimo:</strong> para análise de tráfego e melhoria do site.</li>
+                    </ul>
+                </div>
+
+                <!-- Compartilhamento -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        Compartilhamento de Dados
+                    </div>
+                    <p>Não vendemos, comercializamos ou compartilhamos seus dados pessoais com terceiros para fins comerciais. Os dados poderão ser compartilhados apenas com:</p>
+                    <ul>
+                        <li>Prestadores de serviços tecnológicos (hospedagem, analytics) que atuam como operadores de dados, conforme a LGPD.</li>
+                        <li>Autoridades públicas, quando exigido por lei ou ordem judicial.</li>
+                    </ul>
+                </div>
+
+                <!-- Seus direitos -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Seus Direitos (LGPD — Art. 18)
+                    </div>
+                    <p>Você pode, a qualquer momento, exercer os seguintes direitos:</p>
+                    <ul>
+                        <li>Confirmação da existência de tratamento dos seus dados.</li>
+                        <li>Acesso aos dados pessoais tratados.</li>
+                        <li>Correção de dados incompletos, inexatos ou desatualizados.</li>
+                        <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade.</li>
+                        <li>Portabilidade dos dados a outro fornecedor de serviço.</li>
+                        <li>Eliminação dos dados tratados com o seu consentimento.</li>
+                        <li>Informação sobre compartilhamento e possibilidade de revogação do consentimento.</li>
+                    </ul>
+                </div>
+
+                <!-- Preferências de Cookies -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5c0-1.1.9-2 2-2"/></svg>
+                        Preferências de Cookies
+                    </div>
+                </div>
+                <div class="cookie-prefs-grid">
+                    <!-- Essenciais -->
+                    <div class="cookie-card disabled-card">
+                        <div class="cookie-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        </div>
+                        <div class="cookie-card-info">
+                            <h4>Cookies Essenciais</h4>
+                            <p>Necessários para o funcionamento do site. Não podem ser desativados.</p>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked disabled id="cookieEssential">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <!-- Análise -->
+                    <div class="cookie-card">
+                        <div class="cookie-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
+                        <div class="cookie-card-info">
+                            <h4>Cookies de Análise</h4>
+                            <p>Nos ajudam a entender como você usa o site e melhorar a experiência.</p>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked id="cookieAnalytics">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <!-- Marketing -->
+                    <div class="cookie-card">
+                        <div class="cookie-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </div>
+                        <div class="cookie-card-info">
+                            <h4>Cookies de Marketing</h4>
+                            <p>Usados para exibir conteúdo e anúncios relevantes para você.</p>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" checked id="cookieMarketing">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Retenção e Segurança -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        Retenção e Segurança
+                    </div>
+                    <p>Seus dados pessoais são armazenados pelo tempo estritamente necessário para cumprir as finalidades descritas nesta política, respeitando os prazos legais aplicáveis. Utilizamos medidas técnicas e organizacionais adequadas para proteger seus dados contra acessos não autorizados, perda, alteração ou divulgação indevida.</p>
+                </div>
+
+                <!-- Mais informações -->
+                <div class="cookie-section">
+                    <div class="cookie-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5c1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        Mais Informações
+                    </div>
+                    <p>Para exercer seus direitos previstos no Art. 18 da LGPD ou esclarecer dúvidas sobre esta política, entre em contato conosco pelo e-mail ou telefone disponíveis no rodapé deste site. O Encarregado de Dados (DPO) está à disposição para atendê-lo.</p>
+                </div>
+
+            </div>
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Recusar Todos</button>
+                <button class="cookie-btn cookie-btn-save" id="cookieSave">Salvar Preferências</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Aceitar Todos</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
